@@ -68,6 +68,12 @@ body {
 .option:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
+.option.correct {
+    background-color: #0d630d;
+}
+.option.wrong {
+    background-color: #f00;
+}
 
 .scoreArea {
     background-color: rgba(255, 255, 255, 0.5);
