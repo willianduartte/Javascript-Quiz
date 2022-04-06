@@ -44,7 +44,7 @@ function optionClickEvent(e) {
         correctAnswers++
     }
 
-    document.querySelector('.option').classList.add(resposta)
+    document.querySelectorAll('.option').classList.add(resposta)
 
     setTimeout(() => {
         document.querySelectorAll('.option').classList.remove(resposta)
