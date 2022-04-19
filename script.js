@@ -34,20 +34,21 @@ function showQuestion() {
     }
 }
 
-let respostas = document.querySelectorAll('.option')
-
 function optionClickEvent(e) {
     let clickedOption = parseInt(e.target.getAttribute('data-op'))
     let resposta = questions[currentQuestion].answer === clickedOption ? 'correct' : 'wrong'
+    let incorreto = e.target;
+    let correto = document.querySelector(`div[data-op="${questions[currentQuestion].answer}"]`)
 
     if(resposta === 'correct') {
         correctAnswers++
+        correto.classList.add('correct')
+    } else {
+        incorreto.classList.add('wrong')
+        correto.classList.add('correct')
     }
 
-    document.querySelectorAll('.option').classList.add(resposta)
-
     setTimeout(() => {
-        document.querySelectorAll('.option').classList.remove(resposta)
         currentQuestion++ 
         showQuestion()
     }, 1000); 
