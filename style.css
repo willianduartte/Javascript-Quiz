@@ -3,6 +3,45 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --switch-color: #FFF;
+    --body-bg: #333;
+    --question-color: #fff;
+    --option-bg: rgba(0, 0, 0, 0.3);
+    --option-color: #aaa;
+    --option-span-bg: rgba(0, 0, 0, 0.8);
+    --option-span-color: #555;
+    --option-hover-bg: rgba(0, 0, 0, 0.2);
+    --option-hover-color: #555;
+    --score-area-bg: rgba(255, 255, 255, 0.5);
+    --score-text-color: #000;
+    --score-text2-color: #000;
+    --score-button-bg: rgba(0, 0, 0, 0.5);
+    --score-button-color: #CCC;
+    --score-button-hover-bg: rgba(0, 0, 0, 0.4);
+    --footer-color: #FFF;
+    --footer-a-hover-color: #f00;
+}
+
+.light-mode:root {
+    --switch-color: #000;
+    --body-bg: #eee;
+    --question-color: #000;
+    --option-bg: rgba(0, 0, 0, 0.2);
+    --option-color: #000;
+    --option-span-bg: rgba(0, 0, 0, 0.8);
+    --option-span-color: #aaa;
+    --option-hover-bg: rgba(85, 85, 85, 0.5);
+    --option-hover-color: #000;
+    --score-area-bg: rgba(0, 0, 0, 0.5);
+    --score-text-color: #eee;
+    --score-text2-color: #eee;
+    --score-button-bg: rgba(255, 255, 255, 0.5);
+    --score-button-color: #333;
+    --score-button-hover-bg: rgba(255, 255, 255, 0.4);
+    --footer-color: #000;
+    --footer-a-hover-color: #f00;
+}
 
 body {
     display: flex;
@@ -10,7 +49,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #333;
+    background-color: var(--body-bg);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -22,11 +61,58 @@ body {
     right: 0;
 }
 .progress--bar {
-    background-color: #00FF00;
+    background-color: rgb(0, 150, 0);
     height: 100%;
     transition: all ease .5s;
 }
-
+.toggle {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 30px;
+    right: 20px;
+}
+#switch {
+    color: var(--switch-color);
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+.toggle-title {
+    color: var(--footer-color);
+    margin-right: 10px;
+}
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: grey;
+    float: right;
+    border-radius: 100px;
+    position: relative;
+}
+label::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 90px;
+    transition: all ease 0.4s;
+}
+input:checked + label {
+    background-color: var(--footer-color);
+}
+input:checked + label::after {
+    left: calc(100% - 5px);
+    transform: translatex(-100%);
+}
+label:active:after {
+    width: 45px;
+}
 .questionArea,
 .scoreArea {
     display: none;
@@ -38,7 +124,7 @@ body {
 }
 
 .question {
-    color: #FFF;
+    color: var(--question-color);
     font-size: 18px;
     margin: 20px 0;
 }
@@ -46,10 +132,10 @@ body {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--option-bg);
+    color: var(--option-color);
     border-radius: 10px;
     margin-bottom: 5px;
-    color: #AAA;
     font-size: 16px;
     cursor: pointer;
 }
@@ -62,21 +148,22 @@ body {
     border-radius: 15px;
     margin-left: 5px;
     margin-right: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #555;
+    background-color: var(--option-span-bg);
+    color: var(--option-span-color);
 }
 .option:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--option-hover-bg);
+    color: var(--option-hover-color);
 }
 .option.correct {
-    background-color: #0d630d;
+    background-color: rgb(0, 150, 0);
 }
 .option.wrong {
-    background-color: #f00;
+    background-color: rgb(220, 0, 0);
 }
 
 .scoreArea {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--score-area-bg);
     padding: 20px;
     border-radius: 20px;
     margin: 10px;
@@ -88,7 +175,7 @@ body {
     margin-bottom: 10px;
 }
 .scoreText1 {
-    color: #000;
+    color: var(--score-text-color);
     font-size: 23px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -101,34 +188,40 @@ body {
 }
 .scoreText2 {
     font-size: 16px;
-    color: #000;
+    color: var(--score-text2-color);
     margin-bottom: 10px;
 }
 
 .scoreArea button {
     border: 0;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #CCC;
+    background-color: var(--score-button-bg);
+    color: var(--score-button-color);
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
 }
 .scoreArea button:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--score-button-hover-bg);
 }
 
 footer {
     margin-top: 20px;
-    color: #FFF;
+    color: var(--footer-color);
     font-size: 13px;
 }
 
 footer a {
-    color: #FFF;
+    color: var(--footer-color);
     text-decoration: none;
 }
 
 footer a:hover {
-    color: red;
+    color: var(--footer-a-hover-color);
+}
+
+@media (max-width: 550px) {
+    .questionArea {
+        width: 90%;
+    }
 }

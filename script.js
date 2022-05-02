@@ -8,6 +8,13 @@ showQuestion()
 document.querySelector('.scoreArea button').addEventListener('click', reset)
 
 // Functions
+const HTML = document.querySelector('html')
+const Switch = document.getElementById('switch')
+
+Switch.addEventListener('change', () => {
+    HTML.classList.toggle('light-mode')
+})
+
 function showQuestion() {
     if(questions[currentQuestion]) {
         let q = questions[currentQuestion]
